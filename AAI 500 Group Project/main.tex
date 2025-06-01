@@ -1,7 +1,7 @@
 % This is the "preamble" of the document. This is where the format options get set.
 % Pro-tip: things following the % mark will not be compiled by LaTeX. I'll be using them extensively to explain things as we go.
-% Note: not to scare you off of LaTeX, but it's normal to have problems. And ya girl has been having some. I've included the copyright info at the bottom of the document from the guy who wrote this package, because his documentation doesn't entirely match how it's actually used. So this is a combination of his working preamble along with my added commentary or explanation. 
-%% 
+% Note: not to scare you off of LaTeX, but it's normal to have problems. And ya girl has been having some. I've included the copyright info at the bottom of the document from the guy who wrote this package, because his documentation doesn't entirely match how it's actually used. So this is a combination of his working preamble along with my added commentary or explanation.
+%%
 
 
 \documentclass[stu,12pt,floatsintext]{apa7}
@@ -12,17 +12,17 @@
 \usepackage[style=apa,sortcites=true,sorting=nyt,backend=biber]{biblatex}
 % biblatex: loads the package that will handle the bibliographic info. Other option is natbib, which allows for more customization
 % - style=apa: sets the reference format to use apa (albeit the 6th edition)
-\DeclareLanguageMapping{american}{american-apa} % Gotta make sure we're patriotic up in here. Seriously, though, there can be local variants to how citations are handled, this sets it to the American idiosyncrasies 
+\DeclareLanguageMapping{american}{american-apa} % Gotta make sure we're patriotic up in here. Seriously, though, there can be local variants to how citations are handled, this sets it to the American idiosyncrasies
 \addbibresource{references.bib} % This is the companion file to the main one you're writing. It contains all of the bibliographic info for your references. It's a little bit of a pain to get used to, but once you do, it's the best. Especially if you recycle references between papers. You only have to get the pieces in the holes once.`
 
 \usepackage{comment}
 \usepackage{siunitx}
-\sisetup{round-mode=places,round-precision=2}\usepackage[T1]{fontenc} 
+\sisetup{round-mode=places,round-precision=2}\usepackage[T1]{fontenc}
 \usepackage{mathptmx} % This is the Times New Roman font, which was the norm back in my day. If you'd like to use a different font, the options are laid out here: https://www.overleaf.com/learn/latex/Font_typefaces
 % Alternately, you can comment out or delete these two commands and just use the Overleaf default font. So many choices!
 
 
-% Title page stuff _____________________
+% Title page stuff
 \title{Predicting a Successful Climb of Mount Everest} % The big, long version of the title for the title page
 \shorttitle{What Defines a Successful Climb of Mount Everest} % The short title for the header
 \authorsnames{Jacob Tassos,Mostafa Zamani Turk,Marston S. Ward}
@@ -42,13 +42,13 @@
 % \section{Introduction} This command is commented out, because I was taught it was redundant to have the paper's title and introduction together. If your instructor wants it to say "Introduction", delete the % at the start
 
 \section{Introduction}
-Mount Everest is the highest land surface point on the planet, when this height is defined as height above mean sea level. At \si{8,848~\km} (\si{29,031.7~feet}), it towers above it's closest rival by more than \si{200~\km} (See list of highest mountains on Earth: \url{https://en.wikipedia.org/wiki/List_of_highest_mountains_on_Earth}). While there are more than 100 peaks on the planet with peaks above \si{7~\km}, none captures the human imagination as Everest. Humans cannot live at such high elevations far above the tree line, where the air is rarefied and every function of the human body is challenged \cite{goos_how_2018}. 
+Mount Everest is the highest land surface point on the planet, when this height is defined as height above mean sea level. At \si{8,848~\km} (\si{29,031.7~feet}), it towers above it's closest rival by more than \si{200~\km} (See list of highest mountains on Earth: \url{https://en.wikipedia.org/wiki/List_of_highest_mountains_on_Earth}). While there are more than 100 peaks on the planet with peaks above \si{7~\km}, none captures the human imagination as Everest. Humans cannot live at such high elevations far above the tree line, where the air is rarefied and every function of the human body is challenged \cite{goos_how_2018}.
 
-Despite the extreme environment of peaks about 7,000 km, the human desire to overcome a challenge even at extremely personal risk remains alive and well. Mountains are not the only extreme environment on the planet that humans have tried to reach. The deepest parts of the oceans are also areas we have successfully traversed, however, the costs of specialized equipment and availability of aid in achieving the goal of reaching these extreme environment has made Everest an attractive place because it became attainable and relatively inexpensive. 
+Despite the extreme environment of peaks about 7,000 km, the human desire to overcome a challenge even at extremely personal risk remains alive and well. Mountains are not the only extreme environment on the planet that humans have tried to reach. The deepest parts of the oceans are also areas we have successfully traversed, however, the costs of specialized equipment and availability of aid in achieving the goal of reaching these extreme environment has made Everest an attractive place because it became attainable and relatively inexpensive.
 
-For centuries now, climbing the worlds highest mountains has been enabled and facilitated by modern technology and, in the case of Everest, Nepal tourist industry built around climbing the mountain. These two factors have made one of the world's deadliest mountains accessible to even more adventurers, and many would say, amateurs. In the early days of climbing teams climb to be the first to reach the highest peak, now anyone with enough resources can travel to, especially Everest and attempt to summit. But far from all who do, make it, or even make it back in one piece - if they make it back at all.     
+For centuries now, climbing the worlds highest mountains has been enabled and facilitated by modern technology and, in the case of Everest, Nepal tourist industry built around climbing the mountain. These two factors have made one of the world's deadliest mountains accessible to even more adventurers, and many would say, amateurs. In the early days of climbing teams climb to be the first to reach the highest peak, now anyone with enough resources can travel to, especially Everest and attempt to summit. But far from all who do, make it, or even make it back in one piece - if they make it back at all.
 
-Everest and K2 (second peak in Karakoram) have over the years competed for the title: deadliest mountain. Many lives have been lost due a range of factors ranging from physiology, mindset, preparedness, ego, stupidity and natural disasters such as avalanches and inclement weather. Many studies and documentaries have been done on mountain climbers and their plight to summit and return - alive. But sadly, the history of climbing is replete with tragedies. In the light of this some articles have tried to analyze and suggest ways to improve your chances of a successful summit. In this paper we define that success as one where the climber summits and returns under their own strength, and or course, alive! For example, \textcite{huey_mountaineering_2001} analyzed a research program that attempted to predict (similar to this paper) what factors influence the success ascent or death rates. In this project we do not try to predict death rates as not all failures to summit is due to the mountaineer dying. However, the paper drew no conclusions on the matter. \textcite{szymczak_comparison_2021} examined the weather climber experienced on Everest and K2 in both the climbing season (July) and mid winter season. They study found that more extreme weather in both seasons than on K2, which is \si{8^{\circ}} latitude farther north.           
+Everest and K2 (second peak in Karakoram) have over the years competed for the title: deadliest mountain. Many lives have been lost due a range of factors ranging from physiology, mindset, preparedness, ego, stupidity and natural disasters such as avalanches and inclement weather. Many studies and documentaries have been done on mountain climbers and their plight to summit and return - alive. But sadly, the history of climbing is replete with tragedies. In the light of this some articles have tried to analyze and suggest ways to improve your chances of a successful summit. In this paper we define that success as one where the climber summits and returns under their own strength, and or course, alive! For example, \textcite{huey_mountaineering_2001} analyzed a research program that attempted to predict (similar to this paper) what factors influence the success ascent or death rates. In this project we do not try to predict death rates as not all failures to summit is due to the mountaineer dying. However, the paper drew no conclusions on the matter. \textcite{szymczak_comparison_2021} examined the weather climber experienced on Everest and K2 in both the climbing season (July) and mid winter season. They study found that more extreme weather in both seasons than on K2, which is \si{8^{\circ}} latitude farther north.
 
 
 \section{EDA}
@@ -56,8 +56,8 @@ Everest and K2 (second peak in Karakoram) have over the years competed for the t
 \begin{table}
     \centering
     \caption{Results of Exploratory Data Analysis}
-    \begin{tabular}{lcccc} 
-        \hline 
+    \begin{tabular}{lcccc}
+        \hline
          Variable Name & Total Unique Values & Mean ($\mu$) & STD ($\sigma$) & Continuous/Discrete \\
          \hline
          peak$\_$name & 385 & - & - & D\\
@@ -83,7 +83,7 @@ Everest and K2 (second peak in Karakoram) have over the years competed for the t
 
 \begin{figure}
     \centering
-    \includegraphics[width=0.75\linewidth]{sampleFig.png} % This is setting the figure to be .75x the width of the line. This can go all the way from 0.1 to 1 (and beyond, but then you're outside the page).
+    \includegraphics[width=0.75\linewidth]{sampleFig.png}
     \caption{The mean vibes for each word type and counterbalanced condition order. Error bars represent one standard error of the mean.}
     \label{fig:OverallEffect}
 \end{figure}
@@ -96,7 +96,7 @@ Participant information goes here.
 
 Words, along with a sample table (Table~\ref{tab:table_words}).
 
-% There's lots of little components to the table. For the most part you can just copy it, or build your own with Overleaf's table wizard up top. 
+% There's lots of little components to the table. For the most part you can just copy it, or build your own with Overleaf's table wizard up top.
 % I'll mention that the & character separates items into different columns on a row, and the \\ ends that line. \hline generates a line that matches the width of the table.
 
 \section{Model selection}
