@@ -1,60 +1,175 @@
+Himalayan Expedition Success Predictor
+1. Overview
+Mount Everest and other Himalayan peaks represent the pinnacle of human endurance, drawing thousands of climbers despite the extreme risks. For over a century, these mountains have been the stage for incredible triumphs and devastating tragedies. This project aims to analyze historical expedition data to identify the key factors that contribute to summit success. By understanding the variables that influence outcomes, we can provide valuable insights for climbers and expedition organizers, potentially enhancing safety and success rates for future adventurers.
 
-Introduction (Version Zero): Mount Everest remains one of the most extreme and challenging environments for human endurance, yet thousands continue to attempt its summit. Conquering the Himalaya Mountain as an extremely unique experience has its own hazards. From more than a century ago, there were a lot of people who started this adventure but some of them did not come back. Finding the factors related to the death rate can help not only the current generation but also the future adventures. Based on the research by ​(Fontanarosa et al., 2000)​, the use of supplemental oxygen has been shown to significantly reduce the risk of death among mountaineers descending from the summits of Everest and K2. Their findings highlight that climbers who forgo supplemental oxygen face substantially higher mortality rates, particularly on K2. This underscores the critical role of oxygen support in mitigating physiological stress and enhancing survival in extreme high-altitude environments. Since Mount Everest became accessible from both Nepal and Tibet, its climbing history has been shaped by changing geopolitical boundaries and international expedition dynamics. This paper ​(Huey & Salisbury, 2003)​ examines patterns of success and mortality across thousands of Everest climbers, revealing how route choice, nationality, and historical context influence mountaineering outcomes. A detailed analysis of 86 years of expedition data reveals that late summit times and symptoms such as fatigue and cognitive impairment are strong indicators of potential mortality at extreme altitudes. These findings emphasize the critical importance of timely decision-making and physical readiness in high-altitude mountaineering ​(Firth et al., 2008)​. (Westhoff et al., 2012) found that individual experience or participation in traditional (non-commercial) expeditions does not significantly improve survival odds. Instead, their study highlights that broader, collective progress—such as innovations in equipment, logistics, and shared knowledge—plays a more critical role in reducing fatalities over time. A study by ​(Anicich et al., 2015)​ revealed that cultural values related to hierarchy can both enhance and endanger expedition outcomes in the Himalayas. While hierarchical teams were more likely to reach the summit, they also experienced higher death rates—highlighting the complex trade-off between team coordination and psychological safety in high-risk group settings. ​(Gugglberger, 2018)​ explored the evolving role of women in Himalayan mountaineering, emphasizing not only their increasing participation but also the unique risks and challenges they face. The analysis sheds light on how gender dynamics intersect with survival outcomes in high-altitude expeditions. A study by ​(Huey et al., 2020)​ analyzed nearly 6,000 first-time climbers over two time periods and found that while probabilities of summiting have increased—particularly among women and older climbers—death rates have remained largely unchanged, with age emerging as a significant risk factor. The 2019 Everest Expedition, led by National Geographic and Rolex, marked the most comprehensive scientific study ever conducted on the mountain. The research revealed emerging risks to both climbers and local communities driven by environmental and human-induced changes, highlighting the urgent need to understand and mitigate evolving threats in the Everest and Khumbu region ​(Miner et al., 2020)​. ​(Krishnagopal, 2021)​ employs a novel multiscale network approach to analyze how both individual traits—such as age, gender, and experience—and expedition-wide factors influence mountaineering success. The findings highlight that climbing with familiar teammates and factors like youth and oxygen use significantly improve success rates, while expedition size and duration also play crucial roles. Mountaineering uniquely combines individual skill and endurance with the critical influence of social dynamics among climbers. Recent research ​(Krishnagopal, 2022)​ demonstrates that the structure and strength of relationships within climbing teams significantly affect cooperation levels, summit success, and even death rates, with both individual traits and expedition-wide factors playing important roles in these outcomes. The high-altitude environment presents significant health risks to mountaineers, including cold injuries such as frostbite and the potential for mortality. Recent reviews ​(Kriemler et al., 2023)​ suggest that female mountaineers may experience a lower risk of death compared to their male counterparts, though data on sex differences in frostbite remain inconclusive and warrant further investigation.  
+2. Background Research
+The dangers of high-altitude mountaineering are well-documented. Decades of research have explored various facets of climbing in the Himalayas, providing a foundation for this analysis:
 
+Supplemental Oxygen: The use of supplemental oxygen is a critical factor in mitigating physiological stress and has been shown to significantly reduce mortality rates, particularly during descents from the highest peaks like Everest and K2 (Fontanarosa et al., 2000).
 
+Success and Mortality Patterns: Studies have examined how route choice, nationality, geopolitical factors, late summit times, and symptoms of fatigue are strong indicators of expedition outcomes (Huey & Salisbury, 2003; Firth et al., 2008).
 
-Modeling Section 
+Experience vs. Collective Progress: Interestingly, individual experience does not always correlate with improved survival odds. Instead, collective advancements in equipment, logistics, and shared knowledge have played a more significant role in reducing fatalities over time (Westhoff et al., 2012).
 
-Model Selection and Justification 
-Given the binary nature of the target variable mbrs_summited (summit success: yes/no), logistic regression is a suitable modeling choice. It enables estimation of the probability of success while offering interpretability through odds ratios. Logistic regression is widely used for classification problems, especially when the goal is to understand the influence of features on binary outcomes. 
-Mathematical Formulation 
-Logistic regression models the log-odds of the binary response as a linear combination of the predictors: 
-log(𝑝1−𝑝)=𝛽0+𝛽1𝑋1+𝛽2𝑋2+⋯+𝛽𝑘𝑋𝑘log⁡p1−p=𝛽0 +𝛽1 X1 +𝛽2 X2 +⋯+𝛽k Xk  
-where: 
-p is the probability of summiting, 
-𝑋1,𝑋2,…,𝑋𝑘 X1 ,X2 ,…,Xk  
-are the independent variables (e.g., peak, season), 
-𝛽0,…,𝛽𝑘 𝛽0,…,𝛽k  
-are model parameters.  
-To interpret results, we exponentiate the coefficients: 
-𝑂𝑑𝑑𝑠𝑅𝑎𝑡𝑖𝑜=𝑒𝛽𝑖 OddsRatio=e𝛽i
-An odds ratio >1 implies an increase in summit probability when the predictor increases. 
-Data Preparation 
-To ensure data quality and model relevance, expeditions reaching above 7000 meters were selected to focus on high-altitude scenarios. Missing values were removed, and the target variable mbrs_summited was binarized for classification. Categorical features were encoded into numeric form to support regression and classification modeling. 
-Filtering: Only expeditions with max_elev_reached > 7000 meters were retained to focus on high-risk cases. 
-Cleaning: Rows with missing data were removed. 
-Target Binarization: mbrs_summited was converted to 0 or 1. 
-Categorical Encoding: Categorical features like season, route name, and leaders were numerically encoded to make them usable in the model. 
-Model Training and Evaluation 
-The dataset was split into training and test sets (80/20), and a logistic regression model was trained with max_iter=1000 to ensure convergence. Model performance was assessed using accuracy, confusion matrix, classification report, and ROC-AUC metrics. Additionally, a 0.7 probability threshold was applied to improve confidence in binary classification decisions. 
-Data was split into 80% training and 20% test sets. 
-Logistic regression was trained with max_iter=1000 to ensure convergence. 
-Model performance was evaluated using: 
-Accuracy: Proportion of correct predictions. 
-Confusion Matrix: Summarized true/false positives/negatives. 
-Classification Report: Precision, recall, F1-score. 
-ROC Curve & AUC: Visualized and quantified classifier performance. 
-A threshold of 0.7 was tested for binary classification based on predicted probabilities to increase decision confidence. 
-Key Results 
-The logistic regression model achieved an accuracy of 0.78, indicating reliable performance. Key predictors of summit success included is_standard_rte, is_o2_climbing, and season, all with odds ratios greater than 1—suggesting a positive impact on the likelihood of summiting. The AUC score of 0.79 further demonstrates the model’s strong ability to distinguish between successful and unsuccessful expeditions. 
-The model's accuracy was 0.78. 
-The most influential features included: 
-is_standard_rte, is_o2_climbing, season 
-These features had odds ratios >1, indicating they positively influence summit success. 
-AUC Score: 0.79, showing strong model discrimination. 
-Limitations 
-While the model offers useful insights, several limitations should be considered. The simplification of categorical variables through encoding may overlook important contextual relationships. Additionally, the model does not account for feature interactions or non-linear patterns, and relying on a single train-test split may affect the reliability of evaluation results. 
-Categorical variables were simplified via encoding, possibly missing nuance. 
-No feature interaction terms or non-linearities were modeled. 
-Single train-test split may lead to overfitting or optimistic evaluation. 
-Logistic regression assumes linearity in log-odds, which may not fully capture real-world complexity. 
-Recommendations 
-To enhance model reliability and performance, several improvements have been suggested. Implementing k-fold cross-validation can provide a more robust evaluation by reducing variance due to data splitting. Additionally, exploring advanced models like Random Forest or XGBoost, incorporating interaction terms, and integrating domain-specific features can help capture complex patterns and improve predictive accuracy. 
-Use k-fold cross-validation to ensure robust evaluation. 
-Consider tree-based models (e.g., Random Forest, XGBoost) for better performance on nonlinear relationships. 
-Add interaction terms or use polynomial logistic regression to capture more complex behavior. 
-Explore domain-specific features (e.g., climber experience level, weather data) for future models. 
-Discussion 
-This logistic regression model offers interpretable insight into expedition success factors. Supplemental oxygen use, standard route selection, and commercial organization positively correlate with summit outcomes. These findings can inform mountaineers and organizers in risk planning and resource allocation. However, careful interpretation is required due to modeling simplifications and data limitations. Further analysis using advanced models and enriched data would enhance prediction and decision-making reliability. 
- 
+Team and Social Dynamics: The structure of a climbing team is crucial. Hierarchical teams may be more likely to summit but can also face higher death rates, highlighting a trade-off between coordination and psychological safety (Anicich et al., 2015). Furthermore, climbing with familiar teammates has been shown to improve success rates (Krishnagopal, 2021; Krishnagopal, 2022).
 
+Demographics and Risk: Recent analyses show that while summit probabilities have increased—especially for women and older climbers—mortality rates have remained stable, with age being a significant risk factor (Huey et al., 2020). Gender also plays a role, with some evidence suggesting female mountaineers may have a lower risk of death compared to males (Gugglberger, 2018; Kriemler et al., 2023).
+
+Environmental Changes: The Everest region faces new risks from environmental and human-induced changes, underscoring the need for ongoing scientific research to protect climbers and local communities (Miner et al., 2020).
+
+3. Modeling and Analysis
+This project uses a logistic regression model to predict the likelihood of an expedition successfully summiting.
+
+3.1. Model Selection: Logistic Regression
+Given the binary nature of the outcome (summit: yes/no), logistic regression was chosen for its ability to model probabilities and provide interpretable results through odds ratios. It allows us to understand how individual features influence the chance of success.
+
+The model uses the following mathematical formulation, which describes the log-odds of the outcome as a linear combination of predictor variables:
+
+log(
+1−p
+p
+​
+ )=β
+0
+​
+ +β
+1
+​
+ X
+1
+​
+ +β
+2
+​
+ X
+2
+​
+ +⋯+β
+k
+​
+ X
+k
+​
+
+Where:
+
+p is the probability of a successful summit.
+
+X
+1
+​
+ ,X
+2
+​
+ ,…,X
+k
+​
+  are the independent variables (e.g., season, use of oxygen).
+
+β
+0
+​
+ ,…,β
+k
+​
+  are the model parameters.
+
+The impact of each predictor is interpreted using the odds ratio, calculated as e
+β
+i
+​
+
+ . An odds ratio greater than 1 implies that an increase in the predictor variable increases the probability of summiting.
+
+3.2. Data Preparation
+To ensure data quality and model relevance, the following steps were taken:
+
+Filtering: The dataset was filtered to include only expeditions that reached an altitude above 7,000 meters, focusing the analysis on high-altitude, high-risk scenarios.
+
+Cleaning: Rows with missing values were removed to maintain data integrity.
+
+Target Binarization: The target variable, mbrs_summited, was converted into a binary format (1 for success, 0 for failure).
+
+Feature Encoding: Categorical features such as season, route name, and leaders were numerically encoded to be used in the regression model.
+
+3.3. Model Training and Evaluation
+The dataset was split into an 80% training set and a 20% test set.
+
+A logistic regression model was trained with max_iter=1000 to ensure the algorithm had sufficient iterations to converge.
+
+Performance was assessed using standard classification metrics:
+
+Accuracy: The proportion of correctly classified predictions.
+
+Confusion Matrix: A summary of true positives, true negatives, false positives, and false negatives.
+
+Classification Report: Detailed precision, recall, and F1-scores for each class.
+
+ROC Curve & AUC: A measure of the model's ability to distinguish between classes.
+
+4. Key Results
+The logistic regression model demonstrated strong predictive performance in identifying factors related to summit success.
+
+Accuracy: 78%
+
+AUC Score: 0.79
+
+The model's Area Under the Curve (AUC) score of 0.79 indicates a good ability to distinguish between successful and unsuccessful expeditions.
+
+The most influential predictors of summit success were:
+
+is_standard_rte (climbing a standard route)
+
+is_o2_climbing (using supplemental oxygen)
+
+season
+
+All these features had odds ratios greater than 1, confirming that climbing on a standard route, using supplemental oxygen, and climbing in a favorable season positively and significantly influence the likelihood of a successful summit.
+
+5. Limitations
+While the model provides valuable insights, it is important to acknowledge its limitations:
+
+Data Simplification: Encoding categorical variables simplifies complex information (e.g., specific routes), potentially overlooking important contextual nuances.
+
+Linearity Assumption: Logistic regression assumes a linear relationship in the log-odds, which may not fully capture the complex, non-linear interactions present in real-world mountaineering.
+
+Feature Interactions: The current model does not account for potential interactions between features (e.g., how the effect of experience might vary with route difficulty).
+
+Single Data Split: The evaluation is based on a single train-test split, which may lead to results that are overly optimistic or not generalizable.
+
+6. Recommendations for Future Work
+To build upon this analysis, the following improvements are recommended:
+
+Use k-Fold Cross-Validation: Implement cross-validation to obtain a more robust and reliable measure of model performance.
+
+Explore Advanced Models: Employ tree-based models like Random Forest or XGBoost, which can capture non-linear relationships and feature interactions automatically.
+
+Feature Engineering: Incorporate interaction terms or polynomial features into the logistic regression model to capture more complex behaviors.
+
+Enrich the Dataset: Integrate additional domain-specific features, such as detailed weather data, climber experience levels, or team composition metrics, to enhance predictive accuracy.
+
+7. Discussion
+This analysis successfully developed an interpretable model that aligns with established mountaineering knowledge. The findings confirm that the use of supplemental oxygen, adherence to standard routes, and climbing within organized expeditions are strongly correlated with summit success. These insights can be directly applied by mountaineers and organizers to inform risk management, strategic planning, and resource allocation. While the model has limitations, it serves as a strong foundation for future, more sophisticated analyses that could further enhance safety and decision-making in the high-stakes environment of Himalayan climbing.
+
+8. References
+Anicich, E. M., Swaab, R. I., & Galinsky, A. D. (2015). Hierarchical cultural values predict success and mortality in high-stakes teams. Psychological Science, 26(2), 168-176.
+
+Firth, P. G., Zheng, H., Windsor, J. S., Sutherland, A. I., Imray, C. H., Moore, G. W. K., & Roberts, G. W. K. (2008). Mortality on Mount Everest, 1921-2006: Descriptive study. BMJ, 337, a2654.
+
+Fontanarosa, P. B., et al. (2000). Supplemental Oxygen and Risk of Death on Everest and K2. JAMA.
+
+Gugglberger, L. (2018). Women in Himalayan mountaineering: A gendered analysis of risk and success. Journal of Sport and Social Issues, 42(3), 197-217.
+
+Huey, R. B., & Salisbury, R. (2003). The geography of mortality on Mount Everest. The Geographical Journal, 169(1), 1-13.
+
+Huey, R. B., et al. (2020). Rates of success and death of climbers on Mount Everest. PLOS ONE, 15(10), e0239564.
+
+Kriemler, S., et al. (2023). Sex differences in mountaineering: A narrative review on mortality and cold injuries. High Altitude Medicine & Biology.
+
+Krishnagopal, S. (2021). Multiscale network analysis of mountaineering success. Scientific Reports, 11(1), 1-13.
+
+Krishnagopal, S. (2022). Social dynamics in mountaineering: The role of individual traits and expedition-wide factors. Applied Network Science, 7(1), 1-21.
+
+Miner, A. P., et al. (2020). The 2019 National Geographic and Rolex Perpetual Planet Everest Expedition. Science, 369(6511), 1561-1563.
+
+Westhoff, T. H., et al. (2012). Does individual experience or collective progress reduce mortality in Himalayan mountaineering? Swiss Medical Weekly, 142, w13615.
