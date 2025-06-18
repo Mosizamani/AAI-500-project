@@ -99,18 +99,33 @@ The dataset was split into training and test sets (80/20), and a logistic regres
 %\subsection{Limitations}
 While the model offers useful insights, several limitations should be considered. The simplification of categorical variables through encoding may overlook important contextual relationships. Additionally, the model does not account for feature interactions or non-linear patterns, and relying on a single train-test split may affect the reliability of evaluation results. Logistic regression assumes linearity in log-odds, which may not fully capture real-world complexity.
 
+\pagebreak
+
 \section{Model Analysis/Results}
 % text here
-The logistic regression model achieved an accuracy of 0.81, calculated using the following equation: $$\text{Accuracy} = (\text{True Positives} + \text{True Negatives}) / (\text{Total Predictions}) \approx 0.81$$ However, accuracy alone is not the only measure of model performance.
-Based on the ANOVA F-test Feature Ranking, key predictors of summit success include max$\_$elev$\_$reached, is$\_$o2$\_$climbing, year, total$\_$mbrs, total$\_$days, season, and is\_commercial\_rte. Each of these features had an F-Score above 11 and a p-value well below 0.05. 
+The logistic regression model achieved an accuracy of 0.71, calculated using the following equation: $$\text{Accuracy} = (\text{True Positives} + \text{True Negatives}) / (\text{Total Predictions}) \approx 0.71$$ However, accuracy alone is not the only measure of model performance.
+Based on the ANOVA F-test Feature Ranking, key predictors of summit success include, is\_o2\_climbing, total\_mbrs, total\_days, season, and is\_commercial\_rte. Each of these features had an F-Score above 11 and a p-value well below 0.05. 
 In contrast, is\_standard\_rte was less useful in predicting summit success, with an F-Score of about 0.58.
-The Peirce Skill Score (PSS) and Heidke Skill Score (HSS) provide additional insight into the model's accuracy. Notably, both PSS and HSS are more strict than just the accuracy value. The model provided a PSS value of 0.47 and a HSS value of 0.52. Values above zero indicate a performance better than random chance, while values above 0.5 suggest a solid model.
-An outlier in the key predictors is max\_elev\_reached. Its high importance (reflected in both F-score and p-value) arises because summit success is directly correlated with the maximum elevation reached. This feature likely explains why the model identifies successful summits more accurately than unsuccessful ones. Without the inclusion of max\_elev\_reached, the accuracy, PSS, and HSS significantly drop to 0.71, 0.21, and 0.24 respectively.
+The Peirce Skill Score (PSS) and Heidke Skill Score (HSS) provide additional insight into the model's performance. Both are stricter measures than simple accuracy. The current model yielded a PSS of 0.21 and an HSS of 0.24. Values above zero indicate better-than-random performance, while values above 0.5 suggest a robust model.
+Previously, the feature max\_elev\_reached was included in the model and resulted in significantly higher performance: accuracy rose to 0.81, PSS to 0.47, and HSS to 0.52. However, this feature effectively captures the outcome of the climb — how high a team actually reached — which makes it inappropriate as a true predictor. In other words, it reflects what happened rather than what could be known beforehand. Removal of this feature aligns the model with real-world predictive scenarios, where only pre-expedition or early-expedition variables should be used to forecast summit success.
 The Generalized Linear Model (GLM) function from the StatsModels Python library provides a clear output of many key statistics, including p-values and feature coefficients. Those coefficients can be converted into odds ratios to better interpret their effects. For example, is\_o2\_climbing has a coefficient of about 1.46. The odds ratio is calculated as "$\text{odds ratio} = \text{e}^{\text{coef}}$." Then, the odds ratio for is\_o2\_climbing is about 4.30, which indicates that using oxygen during the ascent increases the odds of summit success by about 4.3 times.
 
 %\subsection{Key Results}
 %The logistic regression model achieved an accuracy of 0.78, indicating reliable performance. Key predictors of summit success included is$\_$o2$\_$climbing and total$\_$mbrs, peak$\_$name, max$\_$elev$\_$reached, rte$\_$1$\_$name, and members, all with odds ratios greater than 1 — suggesting a positive impact on the likelihood of summiting. The AUC score of 0.79 further demonstrates the model’s strong ability to distinguish between successful and unsuccessful expeditions.
 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.5\textwidth]{Confusion_Matrix.png} 
+\caption{Confusion Matrix}
+\label{fig:eda}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.5\textwidth]{ROC_Curve.png} 
+\caption{ROC Curve}
+\label{fig:ctable}
+\end{figure}
 
 
 \begin{table}[th]
@@ -152,7 +167,7 @@ is\_standard\_rte & 0.6215 & 0.5419 & 0.7128 & & & \\
 \end{tabular}
 \end{table}
 
-
+\pagebreak
 
 \section{Conclusion and Recommendations}
 % text here
@@ -184,23 +199,6 @@ O2 & 0.44    & 0.50   & 0    & 0    & 0    & 1    & 1    \\
 \bottomrule
 \end{tabularx}
 \end{table}
-
-
-\begin{figure*}[tH]
-    \centering
-    \includegraphics[width=1.0\textwidth]{eda.png} 
-    \caption{Histogram plots of the input features.}
-    \label{fig:eda}
-\end{figure*}
-
-
-\begin{figure*}[th]
-    \centering
-    \includegraphics[width=1.0\textwidth]{contable.png} 
-    \caption{Contingency Table. }
-    \label{fig:ctable}
-\end{figure*}
-
 
 
 \begin{table}[th]
