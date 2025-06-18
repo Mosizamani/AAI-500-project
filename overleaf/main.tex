@@ -1,7 +1,3 @@
-% This is the "preamble" of the document. This is where the format options get set.
-% Pro-tip: things following the % mark will not be compiled by LaTeX. I'll be using them extensively to explain things as we go.
-% Note: not to scare you off of LaTeX, but it's normal to have problems. And ya girl has been having some. I've included the copyright info at the bottom of the document from the guy who wrote this package, because his documentation doesn't entirely match how it's actually used. So this is a combination of his working preamble along with my added commentary or explanation.
-%%
 \documentclass[stu,12pt,floatsintext]{apa7}
 
 \usepackage{booktabs}
@@ -12,142 +8,240 @@
 \usepackage{adjustbox}
 \usepackage[american]{babel}
 \usepackage{authblk}
-\usepackage{graphicx} % Required for including images
-\usepackage{csquotes} % One of the things you learn about LaTeX is at some level, it's like magic. The references weren't printing as they should without this line, and the guy who wrote the package included it, so here it is. Because LaTeX reasons.
+\usepackage{graphicx} 
+\usepackage{csquotes}
 \usepackage[style=apa,sortcites=true,sorting=nyt,backend=biber]{biblatex}
-% biblatex: loads the package that will handle the bibliographic info. Other option is natbib, which allows for more customization
-% - style=apa: sets the reference format to use apa (albeit the 6th edition)
-\DeclareLanguageMapping{american}{american-apa} % Gotta make sure we're patriotic up in here. Seriously, though, there can be local variants to how citations are handled, this sets it to the American idiosyncrasies
-\addbibresource{references.bib} % This is the companion file to the main one you're writing. It contains all of the bibliographic info for your references. It's a little bit of a pain to get used to, but once you do, it's the best. Especially if you recycle references between papers. You only have to get the pieces in the holes once.`
+\DeclareLanguageMapping{american}{american-apa} 
+\addbibresource{references.bib} 
 
 \usepackage{comment}
 \usepackage{siunitx}
 \sisetup{round-mode=places,round-precision=2}
 \usepackage[T1]{fontenc}
-\usepackage{mathptmx} % This is the Times New Roman font, which was the norm back in my day. If you'd like to use a different font, the options are laid out here: https://www.overleaf.com/learn/latex/Font_typefaces
-% Alternately, you can comment out or delete these two commands and just use the Overleaf default font. So many choices!
+\usepackage{mathptmx} 
 
-
-% Title page stuff
-\title{Predicting a Successful Climb of Mount Everest} % The big, long version of the title for the title page
-\shorttitle{What Defines a Successful Climb of Mount Everest} % The short title for the header
+% Title page stuff %
+\title{Predicting a Successful Climb of Mount Everest}
+\shorttitle{What Defines a Successful Climb of Mount Everest} % header
 \authorsnames{Jacob Tassos, Mostafa Zamani Turk, Marston S. Ward}
 \duedate{June 23, 2025}
-% \date{January 17, 2024} The student version doesn't use the \date command, for whatever reason
 \affiliation{University of San Diego}
-\course{MS-AAI 500-01} % LaTeX gets annoyed (i.e., throws a grumble-error) if this is blank, so I put something here. However, if your instructor will mark you off for this being on the title page, you can leave this entry blank (delete the PSY 4321, but leave the command), and just make peace with the error that will happen. It won't break the document.
-\professor{Professor Leonid Shpaner M.S.}  % Same situation as for the course info. Some instructors want this, some absolutely don't and will take off points. So do what you gotta.
+\course{MS-AAI 500-01} 
+\professor{Professor Leonid Shpaner M.S.}  
 
 \abstract{Abstract to be written later}
 
-%\keywords{APA style, demonstration} % If you need to have keywords for your paper, delete the % at the start of this line
+\keywords{APA style, demonstration} 
 
 \begin{document}
 \maketitle % This tells LaTeX to make the title page
 
-% \section{Introduction} This command is commented out, because I was taught it was redundant to have the paper's title and introduction together. If your instructor wants it to say "Introduction", delete the % at the start
-
 \section{Introduction}
 Mount Everest is the highest land surface point on the planet, when this height is defined as height above mean sea level. At \si{8,848~\km} (\si{29,031.7~feet}), it towers above it's closest rival by more than \si{200~\km} (See list of highest mountains on Earth: \url{https://en.wikipedia.org/wiki/List_of_highest_mountains_on_Earth}). While there are more than 100 peaks on the planet with peaks above \si{7~\km}, none captures the human imagination as Everest. Humans cannot live at such high elevations far above the tree line, where the air is rarefied and every function of the human body is challenged (\cite{gooshow2018}).
 
-Despite the extreme environment of peaks about 7,000 km, the human desire to overcome a challenge even at extremely personal risk remains alive and well. Mountains are not the only extreme environment on the planet that humans have tried to reach. The deepest parts of the oceans are also areas we have successfully traversed, however, the costs of specialized equipment and availability of aid in achieving the goal of reaching these extreme environment has made Everest an attractive place because it became attainable and relatively inexpensive.
+Despite the extreme environment of peaks about 7,000 km, the human desire to overcome a challenge even at extremely personal risk remains alive and well. Mountains are not the only extreme environment on the planet that humans have tried to reach. The deepest parts of the oceans are also areas we have successfully traversed, however, the costs of specialized equipment and availability of aid in achieving the goal of reaching these extreme environments have made Everest an attractive place because it became attainable and relatively inexpensive.
 
-For centuries now, climbing the worlds highest mountains has been enabled and facilitated by modern technology and, in the case of Everest, Nepal tourist industry built around climbing the mountain. These two factors have made one of the world's deadliest mountains accessible to even more adventurers, and many would say, amateurs. In the early days of climbing, teams climb to be the first to reach the highest peak. Now, anyone with enough resources can travel to the peaks, especially Everest, and attempt to summit. But far from all who attempt the climb make it, or even make it back in one piece - if they make it back at all.
+For centuries now, climbing the world's highest mountains has been enabled and facilitated by modern technology and, in the case of Everest, the Nepal tourism industry built around climbing the mountain. These two factors have made one of the world's deadliest mountains accessible to even more adventurers, and many would say amateurs. In the early days of climbing, teams climb to be the first to reach the highest peak. Now, anyone with enough resources can travel to the peaks, especially Everest, and attempt to summit. But far from all who attempt the climb make it, or even make it back in one piece - if they make it back at all.
 
-Everest and K2 (second peak in Karakoram) have over the years competed for the title: deadliest mountain. Many lives have been lost due a range of factors ranging from physiology, mindset, preparedness, ego, stupidity and natural disasters such as avalanches and inclement weather. Many studies and documentaries have been done on mountain climbers and their plight to summit and return - alive. But sadly, the history of climbing is replete with tragedies. In the light of this some articles have tried to analyze and suggest ways to improve your chances of a successful summit. In this paper we define that success as one way where the climber summits but not necessarily returns. For example, \textcite{hueymountaineering2001} analyzed a research program that attempted to predict (similar to this paper) what factors influence the success ascent or death rates. In this project, we do not try to predict death rates as not all failures to summit is due to accidents or deaths. However, the paper drew no conclusions on the matter. \textcite{szymczakcomparison2021} examined the weather climber experienced on Everest and K2 in both the climbing season (July) and mid winter season. They study found that more extreme weather in both seasons than on K2, which is \si{8^{\circ}} latitude farther north.
+Everest and K2 (second peak in Karakoram) have over the years competed for the title: deadliest mountain. Many lives have been lost due to a range of factors ranging from physiology, mindset, preparedness, ego, stupidity, and natural disasters such as avalanches and inclement weather. Many studies and documentaries have been done on mountain climbers and their plight to summit and return alive. But sadly, the history of climbing is replete with tragedies. In the light of this some articles have tried to analyze and suggest ways to improve your chances of a successful summit. In this paper, success is defined as an expedition in which members reach the summit but do not necessarily return. For example, \textcite{hueymountaineering2001} analyzed a research program that attempted to predict (similar to this paper) what factors influence the success ascent or death rates. In this project, we do not try to predict death rates as not all failures to summit are due to accidents or deaths. However, the paper drew no conclusions on the matter. \textcite{szymczakcomparison2021} examined the weather climbers experienced on Everest and K2 in both the climbing season (July) and mid winter season. They study found that more extreme weather in both seasons than on K2, which is \si{8^{\circ}} latitude farther north.
 
+\pagebreak
 
-\section{Dataset}
-The chosen dataset, expeditions.csv, is a file with 10,511 rows and 57 columns. Each row represents an expedition that took place between 1905 and 2020, and each column corresponds to a measured feature of that expedition. Among these features is the variable "mbrs\_summited," which indicates the total number of members that reached the peak. This variable will be used to define the terms of success. After converting it to a binary variable, it will show whether any member of the expedition made it to the summit or not. Thus, an expedition is successful if at least one member reaches the peak. It is worth noting that expeditions vary in size, with a differing number of members participating in each. Since only the ascent will be necessary for the definition of success, not every feature will be used. Some of the useful features include the following: peak name, year, season, leader(s), the first through fourth routes taken, a commercial or standard route, intermediate points before the summit, total number of days, total number of members, if oxygen was used during ascent, agency name, and a list of members.
+\section{Data Cleaning/Preparation}
+The chosen dataset, expeditions.csv, is a file with 10,511 rows and 57 columns. Each row represents an expedition that took place between 1905 and 2020, and each column corresponds to a measured feature of that expedition. Among these features is the variable "mbrs\_summited," which indicates the total number of members that reached the peak. This variable will be used to define the terms of success. After converting it to a binary variable, it will show whether any member of the expedition made it to the summit or not. Thus, an expedition is successful if at least one member reaches the peak. It is worth noting that expeditions vary in size, with a differing number of members participating in each. Since only the ascent will be necessary for the definition of success, not every feature will be used. Some of the useful features include the following: year, season, oxygen used on ascent, a commercial vs standard route, total number of days, and total number of members. Some features were not selected because some expeditions left that variable blank and could cause misclassifications. One of these variables includes 'rte\_1\_name' which keeps track of which route was first in their expedition. To ensure data quality and model relevance, expeditions reaching above 7000 meters were selected to focus on high-altitude scenarios (thus, specific peaks). Missing values were removed, and the target variable, mbrs$\_$summited, was made binary for classification. Categorical features were encoded into numeric form to support a logistic regression model.
 
+\pagebreak
 
 \section{Exploratory Data Analysis}
-Number of expeditions in the raw file are 10,511. After initial feature selection and removing rows 
-with NaNs, that number drops to 4,346.  The statistical description of the selected variables chosen show the following characteristics:
+Number of expeditions in the raw file are 10,511. After initial feature selection and removing rows with NaNs, that number drops to 5,945.  The statistical description of the selected variables chosen show the following characteristics:
 \begin{itemize}
     \item year: Expeditions span 1972–2020 (mean 2008.5, median 2009), concentrated in recent decades.
     \item season: Encoded 1–4, expeditions occur across all seasons.
-    \item rte\_1\_name: Wide variety of routes (1–459), median route code 28, high variability.
-    \item is\_disputed and is\_claim: Very rare (means near zero), most expeditions are undisputed and uncontested.
+    %\item rte\_1\_name: Wide variety of routes (1–459), median route code 28, high variability.
+    %\item is\_disputed and is\_claim: Very rare (means near zero), most expeditions are undisputed and uncontested.
     \item is\_commercial\_rte \& is\_standard\_rte: About 57\% use commercial or standard routes (median 1).
-    \item approach: Diverse approaches (range 1–2041), median 652, high variability.
+    %\item approach: Diverse approaches (range 1–2041), median 652, high variability.
     \item total\_days: Most expeditions last about 21 days (median), but range from 0 to 280 days.
     \item max\_elev\_reached: Typical maximum elevation is 7,400 m (median), with a range up to 8,850 m.
-    \item mbrs\_deaths: Deaths are rare (median 0, max 10).
+    %\item mbrs\_deaths: Deaths are rare (median 0, max 10).
     \item is\_o2\_climbing: 30\% used supplemental oxygen (median 0, 75th percentile 1).
-    \item agency: Many organizing agencies (codes 1–603), median code 66.
-    \item members: Team sizes are large on average (mean 2,121, median 2,111), with wide variation.
-    \item exp\_result: 1 (“success”) is the most common outcome (2,458 out of 4,346; approximately 57\%), 
-    0 otherwise.
+    %\item agency: Many organizing agencies (codes 1–603), median code 66.
+    %\item members: Team sizes are large on average (mean 2,121, median 2,111), with wide variation.
+    %\item exp\_result: 1 (“success”) is the most common outcome (2,458 out of 4,346; approximately 57\%), 0 otherwise.
+
+% we can put figures here to describe the data before the model.
+    %\begin{figure}[H]
+    %\centering
+    %\includegraphics[width=0.5\linewidth]{_.png}
+    %\caption{Every expedition in the dataset }
+    %\label{fig:sample}
+    %\end{figure}
 
 The dataset covers a broad range of expeditions, mostly in the 21st century, with most teams using standard/commercial routes and achieving high elevations. Success is the most frequent result, and fatalities or disputes are rare.
 \end{itemize}
 
+\pagebreak
 
-\begin{table}[ht]
+\section{Model Selection}
+%\subsection{Model Selection and Justification}
+Given the binary nature of the target variable mbrs$\_$summited (summit success: yes/no), logistic regression is a suitable modeling choice. It enables estimation of the probability of success while offering interpretability through odds ratios. Logistic regression is widely used for classification problems, especially when the goal is to understand the influence of features on binary outcomes.
+%\subsection{Mathematical Formulation}
+Logistic regression models the log-odds of the binary response as a linear combination of the predictors: $$\log{\left(\frac{p}{1-p}\right)} = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \cdot \cdot \cdot + \beta_k x_k$$ where $p$ is the probability of summiting, $x_1, x_2, ..., x_k$ are the independent variables, and $\beta_0, ..., \beta_k$ are model parameters. To interpret results, we exponentiate the coefficients: $\text{Odds Ratio} = e^{\beta_i}$. An odds ratio that is greater than 1 implies an increase in summit probability when the predictor increases.
+%\subsection{Model Training and Evaluation}
+The dataset was split into training and test sets (80/20), and a logistic regression model was trained with max$\_$iter=1000 to ensure convergence. Model performance was assessed using accuracy (proportion of correct predictions), confusion matrix (summary of true/false positives/negatives), classification report (precision, recall, and \emph{f1-score}, and ROC-AUC metrics (Visualized and quantified classifier performance). Additionally, a 0.7 probability threshold was applied to improve confidence in binary classification decisions.
+%\subsection{Limitations}
+While the model offers useful insights, several limitations should be considered. The simplification of categorical variables through encoding may overlook important contextual relationships. Additionally, the model does not account for feature interactions or non-linear patterns, and relying on a single train-test split may affect the reliability of evaluation results. Logistic regression assumes linearity in log-odds, which may not fully capture real-world complexity.
+
+\section{Model Analysis/Results}
+% text here
+The logistic regression model achieved an accuracy of 0.81, calculated using the following equation: $$\text{Accuracy} = (\text{True Positives} + \text{True Negatives}) / (\text{Total Predictions}) \approx 0.81$$ However, accuracy alone is not the only measure of model performance.
+Based on the ANOVA F-test Feature Ranking, key predictors of summit success include max$\_$elev$\_$reached, is$\_$o2$\_$climbing, year, total$\_$mbrs, total$\_$days, season, and is\_commercial\_rte. Each of these features had an F-Score above 11 and a p-value well below 0.05. 
+In contrast, is\_standard\_rte was less useful in predicting summit success, with an F-Score of about 0.58.
+The Peirce Skill Score (PSS) and Heidke Skill Score (HSS) provide additional insight into the model's accuracy. Notably, both PSS and HSS are more strict than just the accuracy value. The model provided a PSS value of 0.47 and a HSS value of 0.52. Values above zero indicate a performance better than random chance, while values above 0.5 suggest a solid model.
+An outlier in the key predictors is max\_elev\_reached. Its high importance (reflected in both F-score and p-value) arises because summit success is directly correlated with the maximum elevation reached. This feature likely explains why the model identifies successful summits more accurately than unsuccessful ones. Without the inclusion of max\_elev\_reached, the accuracy, PSS, and HSS significantly drop to 0.71, 0.21, and 0.24 respectively.
+The Generalized Linear Model (GLM) function from the StatsModels Python library provides a clear output of many key statistics, including p-values and feature coefficients. Those coefficients can be converted into odds ratios to better interpret their effects. For example, is\_o2\_climbing has a coefficient of about 1.46. The odds ratio is calculated as "$\text{odds ratio} = \text{e}^{\text{coef}}$." Then, the odds ratio for is\_o2\_climbing is about 4.30, which indicates that using oxygen during the ascent increases the odds of summit success by about 4.3 times.
+
+%\subsection{Key Results}
+%The logistic regression model achieved an accuracy of 0.78, indicating reliable performance. Key predictors of summit success included is$\_$o2$\_$climbing and total$\_$mbrs, peak$\_$name, max$\_$elev$\_$reached, rte$\_$1$\_$name, and members, all with odds ratios greater than 1 — suggesting a positive impact on the likelihood of summiting. The AUC score of 0.79 further demonstrates the model’s strong ability to distinguish between successful and unsuccessful expeditions.
+
+
+
+\begin{table}[th]
 \centering
-\caption{The variable IDs are mapped as follows:
-PN=peak\_name, Y=year, S=season, L=leader(s), R1=rte\_1\_name, CR=is\_commercial\_rte, SR=is\_standard\_rte, AP=approach, TD=total\_days, ME=max\_elev\_reached, TM=total\_mbrs, O2=is\_o2\_climbing, AG=agency, MB=members}
-\begin{tabular}{lrrrr}
+\caption{Generalized Linear Model (Logit) Results for Summit Success}
+\begin{tabular}{l *{6}{S[table-format=2.4]}}
 \toprule
-\textbf{Variable} & \textbf{Acc.} & \textbf{PN Acc.} & \textbf{PN and O2 Acc.} & \textbf{PN, O2, and TD Acc.} \\
+ & {coef} & {std err} & {z} & {P>|z|} & {2.5\%} & {97.5\%} \\
 \midrule
-PN & 0.69133 & -       & -       & -       \\
-Y  & 0.68376 & 0.70143 & 0.73675 & 0.74012 \\
-S  & 0.68545 & 0.70059 & 0.73591 & 0.74180 \\
-L  & 0.68881 & 0.69386 & 0.72918 & 0.73759 \\
-R1 & 0.69807 & 0.71993 & 0.73507 & 0.74348 \\
-R2 & 0.68797 & 0.69134 & 0.73171 & 0.74937 \\
-R3 & 0.68797 & 0.69134 & 0.73003 & 0.74853 \\
-R4 & 0.68797 & 0.69134 & 0.73003 & 0.74853 \\
-CR & 0.68797 & 0.69470 & 0.73423 & 0.74180 \\
-SR & 0.68797 & 0.70395 & 0.73760 & 0.74516 \\
-AP & 0.68629 & 0.69050 & 0.74601 & 0.74601 \\
-TD & 0.68713 & 0.69134 & 0.74853 & -       \\
-ME & 0.98738 & 0.98738 & 0.98654 & 0.98570 \\
-TM & 0.68797 & 0.68545 & 0.73759 & 0.74432 \\
-O2 & 0.68797 & 0.73003 & -       & -       \\
-AG & 0.68293 & 0.70059 & 0.74516 & 0.75105 \\
-MB & 0.69554 & 0.70059 & 0.73591 & 0.74601 \\
+Intercept & 0.4953 & 0.069 & 7.185 & 0.000 & 0.360 & 0.630 \\
+C(season)[T.1] & -0.8859 & 0.344 & -2.576 & 0.010 & -1.560 & -0.212 \\
+C(season)[T.2] & 0.2013 & 0.063 & 3.191 & 0.001 & 0.078 & 0.325 \\
+C(season)[T.3] & -0.7957 & 0.198 & -4.023 & 0.000 & -1.183 & -0.408 \\
+is\_o2\_climbing & 1.4596 & 0.068 & 21.449 & 0.000 & 1.326 & 1.593 \\
+is\_standard\_rte & -0.4755 & 0.070 & -6.801 & 0.000 & -0.613 & -0.338 \\
+\midrule
+\multicolumn{7}{l}{\textbf{Model Summary}} \\
+\multicolumn{2}{l}{Dependent Variable:} & \multicolumn{5}{l}{summited} \\
+\multicolumn{2}{l}{No. Observations:} & \multicolumn{5}{l}{5945} \\
+\multicolumn{2}{l}{Model:} & \multicolumn{5}{l}{GLM} \\
+\multicolumn{2}{l}{Model Family:} & \multicolumn{5}{l}{Binomial} \\
+\multicolumn{2}{l}{Link Function:} & \multicolumn{5}{l}{Logit} \\
+\multicolumn{2}{l}{Scale:} & \multicolumn{5}{l}{1.0000} \\
+\multicolumn{2}{l}{Log-Likelihood:} & \multicolumn{5}{l}{-3450.9} \\
+\multicolumn{2}{l}{Deviance:} & \multicolumn{5}{l}{6901.7} \\
+\multicolumn{2}{l}{Pearson chi2:} & \multicolumn{5}{l}{6020} \\
+\multicolumn{2}{l}{Pseudo R-squared (CS):} & \multicolumn{5}{l}{0.08854} \\
+\midrule
+\multicolumn{7}{l}{\textbf{Odds Ratios}} \\
+ & {Odds Ratio} & {2.5\%} & {97.5\%} & & & \\
+\midrule
+Intercept & 1.6409 & 1.4336 & 1.8783 & & & \\
+C(season)[T.1] & 0.4123 & 0.2101 & 0.8091 & & & \\
+C(season)[T.2] & 1.2230 & 1.0807 & 1.3840 & & & \\
+C(season)[T.3] & 0.4513 & 0.3062 & 0.6649 & & & \\
+is\_o2\_climbing & 4.3043 & 3.7668 & 4.9184 & & & \\
+is\_standard\_rte & 0.6215 & 0.5419 & 0.7128 & & & \\
 \bottomrule
 \end{tabular}
-\label{tab:summary_stats}
 \end{table}
 
 
-\begin{landscape}
-\setlength{\tabcolsep}{4pt} % reduce horizontal padding between columns (default ~6pt)
-\renewcommand{\arraystretch}{1.1} % adjust row height for readability
-\begin{table}[htbp]
+
+\section{Conclusion and Recommendations}
+% text here
+
+%\subsection{Discussion}
+%This logistic regression model offers interpretable insight into expedition success factors. Supplemental oxygen use, standard route selection, and commercial organization positively correlate with summit outcomes. These findings can inform mountaineers and organizers in risk planning and resource allocation. However, careful interpretation is required due to modeling simplifications and data limitations. Further analysis using advanced models and enriched data would enhance prediction and decision-making reliability.
+
+%\subsection{Recommendations}
+%To enhance model reliability and performance, several improvements have been suggested. Implementing k-fold cross-validation can provide a more robust evaluation by reducing variance due to data splitting. Additionally, exploring advanced models like Random Forest or XGBoost, incorporating interaction terms, and integrating domain-specific features can help capture complex patterns and improve predictive accuracy.
+
+\begin{table}[th]
 \centering
-\caption{Summary statistics for expedition variables. The variable IDS are mapped as follows:
-Y=year, S=season, R1=rte\_1\_name, D=is\_disputed, C=is\_claim, CR=is\_commercial\_rte, SR=is\_standard\_rte, 
-AP=approach, TD=total\_days, ME=max\_elev\_reached, MD=mbrs\_deaths=O2, is\_o2\_climbing, AG=agency, MB=members,
-ER=exp\_result}
-\label{tab:expedition_summary}
-\begin{tabularx}{\linewidth}{l*{15}{>{\centering\arraybackslash}X}}
+\renewcommand{\arraystretch}{1.2} % adjust row height
+\setlength{\tabcolsep}{6pt} % adjust column spacing
+\caption{Summary statistics of useful variables for every expedition above 7km (5,945 total expeditions). The variable IDS are mapped as follows:
+Y=year, CR=is\_commercial\_rte, SR=is\_standard\_rte, TD=total\_days, TM=total\_members, ME=max\_elev\_reached, O2=is\_o2\_climbing}
+\label{tab:expedition_summary_vertical}
+\begin{tabularx}{\linewidth}{l *{7}{>{\centering\arraybackslash}X}}
 \toprule
- & Y & S & R1 & D & C & CR & SR & AP & TD & ME & MD & O2 & AG & MB & ER \\
+Variable & Mean & Std & Min & 25\% & 50\% & 75\% & Max \\
 \midrule
-count & 4346 & 4346 & 4346 & 4346 & 4346 & 4346 & 4346 & 4346 & 4346 & 4346 & 4346 & 4346 & 4346 & 4346 & 4346 \\
-mean & 2008.53 & 2.04 & 84.73 & 0.01 & 0.00 & 0.57 & 0.57 & 833.91 & 22.22 & 7345.27 & 0.05 & 0.30 & 120.68 & 2121.51 & 0.57 \\
-std & 7.89 & 1.02 & 106.47 & 0.07 & 0.05 & 0.50 & 0.50 & 567.77 & 15.36 & 1376.33 & 0.34 & 0.46 & 134.22 & 1226.52 & 0.50 \\
-min & 1972 & 1 & 1 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 1 & 1 & 0 \\
-25\% & 2005 & 1 & 3 & 0 & 0 & 0 & 0 & 411.25 & 11 & 6700 & 0 & 0 & 29 & 1064.25 & 0 \\
-50\% & 2009 & 3 & 28 & 0 & 0 & 1 & 1 & 652 & 21 & 7400 & 0 & 0 & 66 & 2111.5 & 1 \\
-75\% & 2015 & 3 & 126.75 & 0 & 0 & 1 & 1 & 1271 & 32 & 8188 & 0 & 1 & 157 & 3181.75 & 1 \\
-max & 2020 & 4 & 459 & 1 & 1 & 1 & 1 & 2041 & 280 & 8850 & 10 & 1 & 603 & 4258 & 1 \\
+Y  & 2002.28 & 12.88  & 1907 & 1995 & 2005 & 2011 & 2020 \\
+CR & 0.57    & 0.50   & 0    & 0    & 1    & 1    & 1    \\
+SR & 0.73    & 0.44   & 0    & 0    & 1    & 1    & 1    \\
+TD & 27.33   & 18.01  & 0    & 15   & 28   & 40   & 133  \\
+TM & 6.54    & 6.10   & 0    & 2    & 5    & 9    & 99   \\
+ME & 8111.46 & 586.98 & 7005 & 7600 & 8188 & 8586 & 8850 \\
+O2 & 0.44    & 0.50   & 0    & 0    & 0    & 1    & 1    \\
 \bottomrule
 \end{tabularx}
 \end{table}
-\end{landscape}
 
 
-\begin{figure*}[h!]
+\begin{figure*}[tH]
     \centering
     \includegraphics[width=1.0\textwidth]{eda.png} 
     \caption{Histogram plots of the input features.}
     \label{fig:eda}
 \end{figure*}
+
+
+\begin{figure*}[th]
+    \centering
+    \includegraphics[width=1.0\textwidth]{contable.png} 
+    \caption{Contingency Table. }
+    \label{fig:ctable}
+\end{figure*}
+
+
+
+\begin{table}[th]
+\centering
+\caption{ANOVA F-test Feature Ranking, Top 10 features ranked by F-score in ANOVA statistical test.}
+\label{tab:anova_ranking}
+\begin{tabular}{clrr}
+\toprule
+\textbf{Rank} & \textbf{Feature} & \textbf{F-Score} & \textbf{P-Value} \\
+\midrule
+1 & max\_elev\_reached  & 1006.09 & $4.00 \times 10^{-204}$ \\
+2 & is\_o2\_climbing    &  479.88 & $2.32 \times 10^{-102}$ \\
+3 & year                &  100.16 & $2.15 \times 10^{-23}$  \\
+4 & total\_mbrs         &   81.14 & $2.79 \times 10^{-19}$  \\
+5 & total\_days         &   50.34 & $1.44 \times 10^{-12}$  \\
+6 & season\_Winter      &   29.93 & $4.65 \times 10^{-8}$   \\
+7 & is\_commercial\_rte &   16.97 & $3.85 \times 10^{-5}$   \\
+8 & season\_Summer      &   14.34 & $1.54 \times 10^{-4}$   \\
+9 & season\_Spring      &   11.00 & $9.15 \times 10^{-4}$   \\
+10 & is\_standard\_rte  &    0.58 & $4.45 \times 10^{-1}$   \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+
+\begin{table}[ht]
+\centering
+\caption{Consolidated Performance Metrics including Precision, F1-score, and overall performance.}
+\label{tab:final_metrics}
+\begin{tabular}{lrrrr}
+\toprule
+\textbf{Metric / Class} & \textbf{Precision} & \textbf{Recall} & \textbf{F1-Score} & \textbf{Support} \\
+\midrule
+Failure (0)    & 0.80 & 0.53 & 0.64 & 371 \\
+Success (1)    & 0.82 & 0.94 & 0.87 & 818 \\
+\midrule
+\textbf{Macro Average} & 0.81 & 0.74 & 0.76 & 1189 \\
+\textbf{Weighted Average} & 0.81 & 0.81 & 0.80 & 1189 \\
+\midrule[\heavyrulewidth]
+\textbf{Overall Score} & \multicolumn{3}{r}{\textbf{Value}} \\
+\midrule
+Accuracy & \multicolumn{3}{r}{0.81} \\
+Peirce Skill Score (PSS) & \multicolumn{3}{r}{0.47} \\
+Heidke Skill Score (HSS) & \multicolumn{3}{r}{0.52} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\printbibliography
 
 \end{document}
