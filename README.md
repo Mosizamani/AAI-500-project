@@ -1,4 +1,27 @@
 Himalayan Expedition Success Predictor
+
+## Quick Start
+
+### Using the Improved Analysis Module
+```bash
+# Install dependencies
+pip install -r requirements.txt
+
+# Run the improved analysis with cross-validation
+python example_analysis.py
+
+# Or use the modular functions in your own code
+python -c "from analysis_utils import load_and_analyze_expeditions; load_and_analyze_expeditions()"
+
+# Run tests
+python -m pytest test_analysis.py -v
+```
+
+### Using the Original Jupyter Notebook
+Open `EDA_for_Himalayan_Summit_Success_glm.ipynb` in Jupyter Lab/Notebook for the original analysis.
+
+## Project Overview
+
 1. Overview
 Mount Everest and other Himalayan peaks represent the pinnacle of human endurance, drawing thousands of climbers despite the extreme risks. For over a century, these mountains have been the stage for incredible triumphs and devastating tragedies. This project aims to analyze historical expedition data to identify the key factors that contribute to summit success. By understanding the variables that influence outcomes, we can provide valuable insights for climbers and expedition organizers, potentially enhancing safety and success rates for future adventurers.
 
@@ -140,7 +163,17 @@ Single Data Split: The evaluation is based on a single train-test split, which m
 6. Recommendations for Future Work
 To build upon this analysis, the following improvements are recommended:
 
-Use k-Fold Cross-Validation: Implement cross-validation to obtain a more robust and reliable measure of model performance.
+**✅ COMPLETED IMPROVEMENTS:**
+
+**Cross-Validation Implementation**: Replaced single train-test split with 5-fold stratified cross-validation to obtain more robust and reliable model performance estimates. See `analysis_utils.py` for implementation.
+
+**Modular Code Organization**: Extracted reusable functions from the notebook into `analysis_utils.py` module with proper data validation, error handling, and consistent API design.
+
+**Automated Testing**: Added comprehensive unit tests in `test_analysis.py` to ensure code reliability and data integrity validation.
+
+**Development Environment**: Created `requirements.txt` for reproducible dependency management and GitHub Actions workflow for automated testing.
+
+**REMAINING FUTURE WORK:**
 
 Explore Advanced Models: Employ tree-based models like Random Forest or XGBoost, which can capture non-linear relationships and feature interactions automatically.
 

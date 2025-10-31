@@ -1,0 +1,97 @@
+name: CI
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8, 3.9, "3.10", "3.11"]
+
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ matrix.python-version }}
+    
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+    
+    - name: Lint with flake8
+      run: |
+        # Stop the build if there are Python syntax errors or undefined names
+        flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+        # Exit-zero treats all errors as warnings
+        flake8 . --count --exit-zero --max-complexity=10 --max-line-length=88 --statistics
+    
+    - name: Format check with black
+      run: |
+        black --check --diff .
+    
+    - name: Test with pytest
+      run: |
+        pytest test_analysis.py -v --tb=short
+    
+    - name: Check notebook can be executed
+      run: |
+        # Install nbconvert and jupyter dependencies
+        pip install nbconvert jupyter
+        # Test that notebook can be executed (dry run without actual execution)
+        jupyter nbconvert --to notebook --execute --stdout EDA_for_Himalayan_Summit_Success_glm.ipynb > /dev/null
+      continue-on-error: true  # Don't fail CI if notebook has execution issues
+
+  data-validation:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: "3.10"
+    
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install pandas numpy
+    
+    - name: Validate data files exist
+      run: |
+        python -c "
+        import pandas as pd
+        import os
+        
+        # Check that required data files exist
+        required_files = ['data/expeditions.csv', 'data/deaths.csv', 'data/peaks.csv', 'data/summiters.csv']
+        for file in required_files:
+            if not os.path.exists(file):
+                print(f'ERROR: Required data file {file} not found')
+                exit(1)
+            else:
+                print(f'✓ Found {file}')
+        
+        # Basic data validation
+        df = pd.read_csv('data/expeditions.csv')
+        print(f'✓ expeditions.csv loaded successfully: {df.shape}')
+        
+        # Check required columns
+        required_cols = ['mbrs_summited', 'max_elev_reached', 'season']
+        missing_cols = [col for col in required_cols if col not in df.columns]
+        if missing_cols:
+            print(f'ERROR: Missing required columns: {missing_cols}')
+            exit(1)
+        else:
+            print('✓ All required columns present')
+        
+        print('Data validation passed!')
+        "
